@@ -4,7 +4,12 @@ import AuthContext from "../context/AuthContext";
 import Link from "next/link";
 
 export default function Navbar() {
-  const { user, logout } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+
+  // Ensure context is available before destructuring
+  if (!auth) return null;
+
+  const { user, logout } = auth;
 
   return (
     <nav className="bg-blue-600 text-white p-4 flex justify-between">
@@ -25,4 +30,5 @@ export default function Navbar() {
       </div>
     </nav>
   );
+  
 }
